@@ -181,7 +181,6 @@ window.onload = function () {
                     'page_chapter2': chapterB,
                     'page_chapter3': chapterC
                 });
-                console.log("MyScroll1");
             }
         }
         if (105 > document.body.scrollTop && document.body.scrollTop > 100) {
@@ -197,7 +196,6 @@ window.onload = function () {
                     'page_chapter2': chapterB,
                     'page_chapter3': chapterC
                 });
-                console.log("MyScroll2");
             }
         }
         if (205 > document.body.scrollTop && document.body.scrollTop > 200) {
@@ -213,7 +211,6 @@ window.onload = function () {
                     'page_chapter2': chapterB,
                     'page_chapter3': chapterC
                 });
-                console.log("MyScroll3");
             }
         }
         if (405 > document.body.scrollTop && document.body.scrollTop > 400) {
@@ -229,7 +226,6 @@ window.onload = function () {
                     'page_chapter2': chapterB,
                     'page_chapter3': chapterC
                 });
-                console.log("MyScroll4");
             }
         }
         if (705 > document.body.scrollTop && document.body.scrollTop > 700) {
@@ -245,10 +241,9 @@ window.onload = function () {
                     'page_chapter2': chapterB,
                     'page_chapter3': chapterC
                 });
-                console.log("MyScroll5");
             }
         }
-        if (1105 > document.body.scrollTop && document.body.scrollTop > 1000) {
+        if (1005 > document.body.scrollTop && document.body.scrollTop > 1000) {
             var block = "sixth";
         }
 
@@ -261,7 +256,6 @@ window.onload = function () {
                     'page_chapter2': chapterB,
                     'page_chapter3': chapterC
                 });
-                console.log("MyScroll6");
             }
         }
 
@@ -269,41 +263,70 @@ window.onload = function () {
 
     //CLICK FOR BUTTONS ONLY :
     for (i = 0; i < document.getElementsByTagName("button").length; i++) {
-        document.getElementsByTagName('button')[i].setAttribute('at_id', "button"+i);
+        document.getElementsByTagName('button')[i].setAttribute('at_id', "button" + i);
         document.getElementsByTagName("button")[i].addEventListener("click", function () {
+            if (this.getAttribute("at_custom_id") != null) {
+                var ButtonPage = this.getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                var ButtonPage_chapter1 = this.getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                var ButtonPage_chapter2 = this.getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                var ButtonPage_chapter3 = this.getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+                var ButtonClick = this.getAttribute("at_custom_id").split('*click*:*')[1].split('*')[0];
+                var ButtonClick_chapter1 = this.getAttribute("at_custom_id").split('*click_chapter1*:*')[1].split('*')[0];
+                var ButtonClick_chapter2 = this.getAttribute("at_custom_id").split('*click_chapter2*:*')[1].split('*')[0];
+                var ButtonClick_chapter3 = this.getAttribute("at_custom_id").split('*click_chapter3*:*')[1].split('*')[0];
+            } else {
+                var ButtonPage = page;
+                var ButtonPage_chapter1 = chapterA;
+                var ButtonPage_chapter2 = chapterB;
+                var ButtonPage_chapter3 = chapterC;
+                var ButtonClick = this.getAttribute('at_id');
+                var ButtonClick_chapter1 = chapterA;
+                var ButtonClick_chapter2 = chapterB;
+                var ButtonClick_chapter3 = chapterC;
+            };
             tag.events.send("click.action", {
-                'click': this.getAttribute('at_id'),
-                'click_chapter1': chapterA,
-                'click_chapter2': chapterB,
-                'click_chapter3': chapterC,
-                'page': page,
-                'page_chapter1': chapterA,
-                'page_chapter2': chapterB,
-                'page_chapter3': chapterC
+                'click': ButtonClick,
+                'click_chapter1': ButtonClick_chapter1,
+                'click_chapter2': ButtonClick_chapter2,
+                'click_chapter3': ButtonClick_chapter3,
+                'page': ButtonPage,
+                'page_chapter1': ButtonPage_chapter1,
+                'page_chapter2': ButtonPage_chapter2,
+                'page_chapter3': ButtonPage_chapter3
             });
-            console.log("MyButton");
         });
     };
-    
+
     //CLICK FOR DIVs USED AS A BUTTON
     for (i = 0; i < document.getElementsByTagName("div").length; i++) {
-        if(document.getElementsByTagName('div')[i].getAttribute('class') == "button"){
-        document.getElementsByTagName('div')[i].setAttribute('at_id', "div"+i);
-        document.getElementsByTagName("div")[i].addEventListener("click", function () {
-            tag.events.send("click.action", {
-                'click': this.getAttribute('at_id'),
-                'click_chapter1': chapterA,
-                'click_chapter2': chapterB,
-                'click_chapter3': chapterC,
-                'page': page,
-                'page_chapter1': chapterA,
-                'page_chapter2': chapterB,
-                'page_chapter3': chapterC
+        if (document.getElementsByTagName('div')[i].getAttribute('at_custom_id') != null) {
+            document.getElementsByTagName('div')[i].setAttribute('at_id', "div" + i);
+            document.getElementsByTagName("div")[i].addEventListener("click", function () {
+                
+                    var ButtonPage = this.getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                    var ButtonPage_chapter1 = this.getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                    var ButtonPage_chapter2 = this.getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                    var ButtonPage_chapter3 = this.getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+                    var ButtonClick = this.getAttribute("at_custom_id").split('*click*:*')[1].split('*')[0];
+                    var ButtonClick_chapter1 = this.getAttribute("at_custom_id").split('*click_chapter1*:*')[1].split('*')[0];
+                    var ButtonClick_chapter2 = this.getAttribute("at_custom_id").split('*click_chapter2*:*')[1].split('*')[0];
+                    var ButtonClick_chapter3 = this.getAttribute("at_custom_id").split('*click_chapter3*:*')[1].split('*')[0];
+                
+                tag.events.send("click.action", {
+                    'click': ButtonClick,
+                    'click_chapter1': ButtonClick_chapter1,
+                    'click_chapter2': ButtonClick_chapter2,
+                    'click_chapter3': ButtonClick_chapter3,
+                    'page': ButtonPage,
+                    'page_chapter1': ButtonPage_chapter1,
+                    'page_chapter2': ButtonPage_chapter2,
+                    'page_chapter3': ButtonPage_chapter3
+                });
             });
-            console.log("MyButton");
-        });
-    }};
-
+        }
+    };
+	
+	
 
     //CLICKS FOR LINKS (INCLUDING DOWNLOAD) :
     var download = 0;
@@ -312,106 +335,176 @@ window.onload = function () {
     for (i = 0; i < document.getElementsByTagName("a").length; i++) {
         if (document.getElementsByTagName("a")[i].getAttribute("download") == "") {
             download++;
-            document.getElementsByTagName('a')[i].setAttribute('at_id', "linkdownload"+download);
+            document.getElementsByTagName('a')[i].setAttribute('at_id', "linkdownload" + download);
             document.getElementsByTagName("a")[i].addEventListener("click", function () {
+                if (this.getAttribute("at_custom_id") != null) {
+                    var LinkPage = this.getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                    var LinkPage_chapter1 = this.getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                    var LinkPage_chapter2 = this.getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                    var LinkPage_chapter3 = this.getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+                    var LinkClick = this.getAttribute("at_custom_id").split('*click*:*')[1].split('*')[0];
+                    var LinkClick_chapter1 = this.getAttribute("at_custom_id").split('*click_chapter1*:*')[1].split('*')[0];
+                    var LinkClick_chapter2 = this.getAttribute("at_custom_id").split('*click_chapter2*:*')[1].split('*')[0];
+                    var LinkClick_chapter3 = this.getAttribute("at_custom_id").split('*click_chapter3*:*')[1].split('*')[0];
+                    console.log('yes');
+                } else {
+                    var LinkPage = page;
+                    var LinkPage_chapter1 = chapterA;
+                    var LinkPage_chapter2 = chapterB;
+                    var LinkPage_chapter3 = chapterC;
+                    var LinkClick = this.getAttribute('at_id');
+                    var LinkClick_chapter1 = chapterA;
+                    var LinkClick_chapter2 = chapterB;
+                    var LinkClick_chapter3 = chapterC;
+                    console.log('no');
+                };
                 tag.events.send("click.download", {
-                    'click': this.getAttribute('at_id'),
-                    'click_chapter1': chapterA,
-                    'click_chapter2': chapterB,
-                    'click_chapter3': chapterC,
-                    'page': page,
-                    'page_chapter1': chapterA,
-                    'page_chapter2': chapterB,
-                    'page_chapter3': chapterC
+                    'click': LinkClick,
+                    'click_chapter1': LinkClick_chapter1,
+                    'click_chapter2': LinkClick_chapter2,
+                    'click_chapter3': LinkClick_chapter3,
+                    'page': LinkPage,
+                    'page_chapter1': LinkPage_chapter1,
+                    'page_chapter2': LinkPage_chapter2,
+                    'page_chapter3': LinkPage_chapter3
                 });
-                console.log("MyDownload");
             })
-        }else if(document.getElementsByTagName("a")[i].getAttribute("href").split('/')[2] != "www.alexandre-cazaurang.com" && document.getElementsByTagName("a")[i].getAttribute("href").slice(0,1) != "#"){
+        } else if (document.getElementsByTagName("a")[i].getAttribute("href").split('/')[2] != "www.alexandre-cazaurang.com" && document.getElementsByTagName("a")[i].getAttribute("href").slice(0, 1) != "#") {
             exit++;
-            document.getElementsByTagName('a')[i].setAttribute('at_id', "linkexit"+exit);
+            document.getElementsByTagName('a')[i].setAttribute('at_id', "linkexit" + exit);
             document.getElementsByTagName("a")[i].addEventListener("click", function () {
+                if (this.getAttribute("at_custom_id") != null) {
+                    var LinkPage = this.getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                    var LinkPage_chapter1 = this.getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                    var LinkPage_chapter2 = this.getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                    var LinkPage_chapter3 = this.getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+                    var LinkClick = this.getAttribute("at_custom_id").split('*click*:*')[1].split('*')[0];
+                    var LinkClick_chapter1 = this.getAttribute("at_custom_id").split('*click_chapter1*:*')[1].split('*')[0];
+                    var LinkClick_chapter2 = this.getAttribute("at_custom_id").split('*click_chapter2*:*')[1].split('*')[0];
+                    var LinkClick_chapter3 = this.getAttribute("at_custom_id").split('*click_chapter3*:*')[1].split('*')[0];
+                } else {
+                    var LinkPage = page;
+                    var LinkPage_chapter1 = chapterA;
+                    var LinkPage_chapter2 = chapterB;
+                    var LinkPage_chapter3 = chapterC;
+                    var LinkClick = this.getAttribute('at_id');
+                    var LinkClick_chapter1 = chapterA;
+                    var LinkClick_chapter2 = chapterB;
+                    var LinkClick_chapter3 = chapterC;
+                };
                 tag.events.send("click.exit", {
-                    'click': this.getAttribute('at_id'),
-                    'click_chapter1': chapterA,
-                    'click_chapter2': chapterB,
-                    'click_chapter3': chapterC,
-                    'page': page,
-                    'page_chapter1': chapterA,
-                    'page_chapter2': chapterB,
-                    'page_chapter3': chapterC
+                    'click': LinkClick,
+                    'click_chapter1': LinkClick_chapter1,
+                    'click_chapter2': LinkClick_chapter2,
+                    'click_chapter3': LinkClick_chapter3,
+                    'page': LinkPage,
+                    'page_chapter1': LinkPage_chapter1,
+                    'page_chapter2': LinkPage_chapter2,
+                    'page_chapter3': LinkPage_chapter3
                 });
-                console.log("MyClick");
             });
-        }else if(document.getElementsByTagName("a")[i].getAttribute("href").slice(0,1) == "#"){
+        } else if (document.getElementsByTagName("a")[i].getAttribute("href").slice(0, 1) == "#") {
             navigation++;
-            document.getElementsByTagName('a')[i].setAttribute('at_id', "linknavigation"+navigation);
+            document.getElementsByTagName('a')[i].setAttribute('at_id', "linknavigation" + navigation);
             document.getElementsByTagName("a")[i].addEventListener("click", function () {
+                if (this.getAttribute("at_custom_id") != null) {
+                    var LinkPage = this.getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                    var LinkPage_chapter1 = this.getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                    var LinkPage_chapter2 = this.getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                    var LinkPage_chapter3 = this.getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+                    var LinkClick = this.getAttribute("at_custom_id").split('*click*:*')[1].split('*')[0];
+                    var LinkClick_chapter1 = this.getAttribute("at_custom_id").split('*click_chapter1*:*')[1].split('*')[0];
+                    var LinkClick_chapter2 = this.getAttribute("at_custom_id").split('*click_chapter2*:*')[1].split('*')[0];
+                    var LinkClick_chapter3 = this.getAttribute("at_custom_id").split('*click_chapter3*:*')[1].split('*')[0];
+                } else {
+                    var LinkPage = page;
+                    var LinkPage_chapter1 = chapterA;
+                    var LinkPage_chapter2 = chapterB;
+                    var LinkPage_chapter3 = chapterC;
+                    var LinkClick = this.getAttribute('at_id');
+                    var LinkClick_chapter1 = chapterA;
+                    var LinkClick_chapter2 = chapterB;
+                    var LinkClick_chapter3 = chapterC;
+                };
                 tag.events.send("click.navigation", {
-                    'click': this.getAttribute('at_id'),
-                    'click_chapter1': chapterA,
-                    'click_chapter2': chapterB,
-                    'click_chapter3': chapterC,
-                    'page': page,
-                    'page_chapter1': chapterA,
-                    'page_chapter2': chapterB,
-                    'page_chapter3': chapterC
+                    'click': LinkClick,
+                    'click_chapter1': LinkClick_chapter1,
+                    'click_chapter2': LinkClick_chapter2,
+                    'click_chapter3': LinkClick_chapter3,
+                    'page': LinkPage,
+                    'page_chapter1': LinkPage_chapter1,
+                    'page_chapter2': LinkPage_chapter2,
+                    'page_chapter3': LinkPage_chapter3
                 });
-                console.log("MyClick");
             });
         } else {
             navigation++;
-            document.getElementsByTagName('a')[i].setAttribute('at_id', "linknavigation"+navigation);
+            document.getElementsByTagName('a')[i].setAttribute('at_id', "linknavigation" + navigation);
             document.getElementsByTagName("a")[i].addEventListener("click", function () {
+                                if (this.getAttribute("at_custom_id") != null) {
+                                    var LinkPage = this.getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                                    var LinkPage_chapter1 = this.getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                                    var LinkPage_chapter2 = this.getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                                    var LinkPage_chapter3 = this.getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+                                    var LinkClick = this.getAttribute("at_custom_id").split('*click*:*')[1].split('*')[0];
+                                    var LinkClick_chapter1 = this.getAttribute("at_custom_id").split('*click_chapter1*:*')[1].split('*')[0];
+                                    var LinkClick_chapter2 = this.getAttribute("at_custom_id").split('*click_chapter2*:*')[1].split('*')[0];
+                                    var LinkClick_chapter3 = this.getAttribute("at_custom_id").split('*click_chapter3*:*')[1].split('*')[0];
+                                } else {
+                                    var LinkPage = page;
+                                    var LinkPage_chapter1 = chapterA;
+                                    var LinkPage_chapter2 = chapterB;
+                                    var LinkPage_chapter3 = chapterC;
+                                    var LinkClick = this.getAttribute('at_id');
+                                    var LinkClick_chapter1 = chapterA;
+                                    var LinkClick_chapter2 = chapterB;
+                                    var LinkClick_chapter3 = chapterC;
+                                };
                 tag.events.send("click.navigation", {
-                    'click': this.getAttribute('at_id'),
-                    'click_chapter1': chapterA,
-                    'click_chapter2': chapterB,
-                    'click_chapter3': chapterC,
-                    'page': page,
-                    'page_chapter1': chapterA,
-                    'page_chapter2': chapterB,
-                    'page_chapter3': chapterC
+                    'click': LinkClick,
+                    'click_chapter1': LinkClick_chapter1,
+                    'click_chapter2': LinkClick_chapter2,
+                    'click_chapter3': LinkClick_chapter3,
+                    'page': LinkPage,
+                    'page_chapter1': LinkPage_chapter1,
+                    'page_chapter2': LinkPage_chapter2,
+                    'page_chapter3': LinkPage_chapter3
                 });
-                console.log("MyClick");
             });
         }
     };
 
-    
-    /*PLAY WITHOUT PLUGIN: 
-    for (i = 0; i < document.getElementsByTagName("video").length; i++) {
-        document.getElementsByTagName('video')[i].setAttribute('id', "video"+i);
-        //var index = i;
-        //document.getElementById("video"+i).addEventListener("play", function () {
-        document.getElementsByTagName('video')[i].addEventListener("play", function () {
-                     //var contentId = document.getElementById("video"+i ).getAttribute('id')
-            //var contentId = document.getElementsByTagName("video")[i].getAttribute("id");
-            tag.events.send('av.play', {
-                'av_content_id': this.getAttribute('id'),//document.getElementsByTagName("video")[i].getAttribute('id'),
-                'av_session_id': n
-            })
-            console.log("MyPlay");
-        });
-//var contentId = document.getElementsByTagName("video")[i].getAttribute('id')
-    };
-    */
-    
+
     //SEARCH :
     for (i = 0; i < document.getElementsByTagName("input").length; i++) {
-        if(document.getElementsByTagName("input")[i].getAttribute("at_search") == "true"){
-        document.getElementsByTagName('input')[i].setAttribute('at_id', "myinput" + i + 1);
-        document.getElementsByTagName('input')[i].addEventListener("search", function () {
-            tag.events.send("internal_search_result.search", {
-                'ise_keyword': this.value,
-                'page': page,
-                'page_chapter1': chapterA,
-                'page_chapter2': chapterB,
-                'page_chapter3': chapterC
+        if (document.getElementsByTagName("input")[i].getAttribute("at_search") == "true") {
+            document.getElementsByTagName('input')[i].setAttribute('at_id', "myinput" + i + 1);
+            document.getElementsByTagName('input')[i].addEventListener("search", function () {
+                if (this.getAttribute("at_custom_id") != null) {
+                    var SearchPage = this.getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                    var SearchPage_chapter1 = this.getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                    var SearchPage_chapter2 = this.getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                    var SearchPage_chapter3 = this.getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+                    var SearchKeyword = this.getAttribute("at_custom_id").split('*keyword*:*')[1].split('*')[0];
+                } else {
+                    var SearchPage = page;
+                    var SearchPage_chapter1 = chapterA;
+                    var SearchPage_chapter2 = chapterB;
+                    var SearchPage_chapter3 = chapterC;
+                    var SearchKeyword = this.value;
+                };
+                tag.events.send("internal_search_result.search", {
+                    'ise_keyword': SearchKeyword,
+                    'page': SearchPage,
+                    'page_chapter1': SearchPage_chapter1,
+                    'page_chapter2': SearchPage_chapter2,
+                    'page_chapter3': SearchPage_chapter3
+                });
+
             });
-            console.log("MySearch");
-        });
-    }};
-    // END OF FIRST PART
+        }
+    };
+
 
     //URL Parsing
     var parser = document.createElement('a');
@@ -516,11 +609,21 @@ window.onload = function () {
     var tag = new ATInternet.Tracker.Tag();
     window.ATInternet.HTMLMediaElement.init(tag);
     //var myMedia = new tag.avInsights.Media(5, 5);
-    
+    if(document.getElementsByName('at_page')[0].getAttribute('at_custom_id') != null){
+        var PagePage = document.getElementsByName('at_page')[0].getAttribute("at_custom_id").split('*page*:*')[1].split('*')[0];
+                    var PagePage_chapter1 = document.getElementsByName('at_page')[0].getAttribute("at_custom_id").split('*page_chapter1*:*')[1].split('*')[0];
+                    var PagePage_chapter2 = document.getElementsByName('at_page')[0].getAttribute("at_custom_id").split('*page_chapter2*:*')[1].split('*')[0];
+                    var PagePage_chapter3 = document.getElementsByName('at_page')[0].getAttribute("at_custom_id").split('*page_chapter3*:*')[1].split('*')[0];
+    }else{
+        var PagePage = page;
+                    var PagePage_chapter1 = chapterA;
+                    var PagePage_chapter2 = chapterB;
+                    var PagePage_chapter3 = chapterC;
+    }
     tag.events.send("page.display", {
-        'page': page,
-        'page_chapter1': chapterA,
-        'page_chapter2': chapterB,
-        'page_chapter3': chapterC
+        'page': PagePage,
+        'page_chapter1': PagePage_chapter1,
+        'page_chapter2': PagePage_chapter2,
+        'page_chapter3': PagePage_chapter3
     })
 }
